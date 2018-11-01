@@ -1,48 +1,50 @@
 #include <iostream>
 #include <cmath>
 
-class Date {
-private:
-    int Day;
-    int Month;
-    int Year;
-    int t = 0;
+class Point {
 public:
-    void setDay(int a) {
-        if (t == 2) {
-            if (a >= 1 && a <= 31) {
-                Day = a;
-        }
-            else
-                std::cout << "Incorrect Day" << std::endl;
-        }
-        else
-            std::cout << "Error" << std::endl;
+    float x;
+    float y;
+
+    void setx(float a) {
+        x = a;
     }
 
-    void setMonth(int b) {
-        Month = b;
-        t++;
+    void sety(float b) {
+        y = b;
     }
 
-    void setYear (int c) {
-        Year = c;
-        t++;
+    float getx() {
+        return x;
     }
 
-    float bar() {
-        std::cout << Day << '.' << Month << '.' << Year << std::endl;
+    float gety() {
+        return y;
+    }
+};
+
+class Polar {
+private:
+    float r;
+    float phi;
+public:
+    void setCord(Point a) {
+        r = sqrt(pow(a.getx(),2) + pow(a.gety(),2));
+        phi = atan(a.getx()/a.gety());
+    }
+
+    void print() {
+        std::cout << r << ' ' << phi << std::endl;
     }
 };
 
 int main() {
-    Date z;
-    z.setDay(5);
-    z.setMonth(6);
-    z.setYear(2018);
-    z.setDay(98);
-    z.setDay(12);
-    z.bar();
+    Point a;
+    a.setx(5);
+    a.sety(6);
+    Polar b;
+    b.setCord(a);
+    b.print();
     return 0;
 }
 
